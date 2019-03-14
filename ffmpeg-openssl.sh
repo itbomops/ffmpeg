@@ -164,7 +164,8 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
   --enable-nonfree \
   --enable-libzmq \
   --enable-openssl \
-  --enable-libzimg
+  --enable-libzimg \
+  --enable-librtmp
 make -j 10
 make install
 hash -r
