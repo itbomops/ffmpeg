@@ -119,6 +119,15 @@ cd zimg
 ./configure --prefix="$HOME/ffmpeg_build"
 make -j 10
 make install
+cp /root/ffmpeg_sources/zimg/.libs/libzimg* /lib64/
+
+echo "bzip2"
+cd ~/ffmpeg_sources
+curl -O -L http://http.debian.net/debian/pool/main/b/bzip2/bzip2_1.0.6.orig.tar.bz2
+tar xjvf bzip2_1.0.6.orig.tar.bz2
+cd bzip2-1.0.6
+make -j 10
+make install
 
 echo "bzip2"
 cd ~/ffmpeg_sources
