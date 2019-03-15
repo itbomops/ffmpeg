@@ -13,3 +13,4 @@ FFMPEG BUILDING SCRIPT WITH LIBS FOR CENTOS7:
   -libzmq 
   -openssl 
   -libzimg
+  -librtmp
