@@ -116,17 +116,10 @@ cd ~/ffmpeg_sources
 git clone --depth 1 https://github.com/sekrit-twc/zimg.git
 cd zimg
 ./autogen.sh
-./configure --prefix="$HOME/ffmpeg_build"
+./configure --prefix="$HOME/ffmpeg_build" --disable-static --enable-shared
 make -j 10
 make install
-
-echo "rtmpdump-2.3"
-cd ~/ffmpeg_sources
-curl -O -L http://rtmpdump.mplayerhq.hu/download/rtmpdump-2.3.tgz
-tar xvf rtmpdump-2.3.tgz
-cd rtmpdump-2.3
-make -j 10
-make install
+cp /root/ffmpeg_sources/zimg/.libs/libzimg* /lib64/
 
 echo "bzip2"
 cd ~/ffmpeg_sources
@@ -134,6 +127,16 @@ git clone https://github.com/enthought/bzip2-1.0.6.git
 cd bzip2-1.0.6
 make -j 10
 make install
+
+echo "rtmpdump"
+cd ~/ffmpeg_sources
+git clone https://github.com/jonnylamb/rtmpdump.git
+cd rtmpdump
+./configure --prefix="$HOME/ffmpeg_build" --disable-static --enable-shared
+make -j 10
+make install
+cp /root/ffmpeg_sources/rtmpdump/librtmp/librtmp* /lib64/
+
 
 echo "FFmpeg"
 cd ~/ffmpeg_sources
@@ -163,8 +166,8 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
   --enable-nonfree \
   --enable-libzmq \
   --enable-openssl \
-  --enable-libzimg \
-  --enable-librtmp
+  --enable-librtmp \
+  --enable-libzimg
 make -j 10
 make install
 hash -r
